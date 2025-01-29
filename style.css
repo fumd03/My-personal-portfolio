@@ -689,10 +689,22 @@ span {
   .home-img img {
     width: 56vw;
   }
-  .services h2 {
-    margin-bottom: 3rem;
-  }
   .services-container {
-    grid-template-columns: repeat(1, 1fr);
+    display: flex; /* Change grid to flex */
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .service-box {
+    width: 90%;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .service-info h4 {
+    font-size: 2rem; /* Adjust heading size */
+  }
+  .service-info p {
+    font-size: 1.4rem; /* Make text more readable */
+    line-height: 1.6;
   }
 }
