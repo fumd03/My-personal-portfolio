@@ -24,4 +24,13 @@ menuIcon.onclick = () => {
   menuIcon.classList.toggle("bx-x");
   navBar.classList.toggle("active");
 };
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    // You can process the form data here if needed
+
+    // Submit the form after processing
+    this.submit();
+  });
+</script>
 
