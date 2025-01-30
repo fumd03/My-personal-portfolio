@@ -26,37 +26,33 @@ menuIcon.onclick = () => {
 };
 
 
-
- document.getElementById("contactForm").addEventListener("submit", function(event) {
 <script>
 document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevents default form submission
+    event.preventDefault(); // Prevent default form submission
 
-    // Create FormData and append Google Form entry IDs (replace these IDs with yours)
-    var formData = new FormData();
-    formData.append("entry.hj99tb2", document.getElementById("fullName").value); // Full Name
-    formData.append("entry.hj99tb4", document.getElementById("email").value); // Email
-    formData.append("entry.hj99tb6", document.getElementById("phoneNumber").value); // Phone Number
-    formData.append("entry.hj99tb8", document.getElementById("subject").value); // Subject
-    formData.append("entry.hj99tb10", document.getElementById("message").value); // Message
+    // Collect form data
+    var fullName = encodeURIComponent(document.getElementById("fullName").value);
+    var email = encodeURIComponent(document.getElementById("email").value);
+    var phoneNumber = encodeURIComponent(document.getElementById("phoneNumber").value);
+    var subject = encodeURIComponent(document.getElementById("subject").value);
+    var message = encodeURIComponent(document.getElementById("message").value);
 
-    // Send form data to Google Form
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/formResponse", {
-        method: "POST",
-        body: formData,
-        mode: "no-cors" // Google Forms does not return a response
-    }).then(() => {
-        alert("Message sent successfully!"); // Show success message
-        document.getElementById("contactForm").reset(); // Reset form fields
-    }).catch(error => {
-        alert("Error submitting the form. Please try again.");
-    });
+    // Replace with actual Google Form entry IDs (Find these using Inspect > Network > Payload)
+    var googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/formResponse?";
+    googleFormURL += "&entry.hj99tb2=" + fullName;
+    googleFormURL += "&entry.hj99tb4=" + email;
+    googleFormURL += "&entry.hj99tb6=" + phoneNumber;
+    googleFormURL += "&entry.hj99tb8=" + subject;
+    googleFormURL += "&entry.hj99tb10=" + message;
+
+    // Submit form using GET request (Google Forms does not allow POST)
+    fetch(googleFormURL, { method: "GET", mode: "no-cors" })
+        .then(() => {
+            alert("Message sent successfully!"); // Show success message
+            document.getElementById("contactForm").reset(); // Reset form fields
+        })
+        .catch(error => {
+            alert("Error submitting the form. Please try again.");
+        });
 });
 </script>
-
-
-
-
-
-
-
