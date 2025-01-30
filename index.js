@@ -41,7 +41,7 @@ document.getElementById("contactForm").addEventListener("submit", function(event
     formData.append("entry.hj99tb10", document.getElementById("message").value); // Message
 
     // Send form data to Google Form
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/formResponse", {
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/viewform?usp=header", {
         method: "POST",
         body: formData,
         mode: "no-cors" // Google Forms does not return a response
