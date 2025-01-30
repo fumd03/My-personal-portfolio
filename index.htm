@@ -218,6 +218,13 @@
       </ul>
       <p class="copyright">© 2025 Fuad Mohammed. All rights reserved.</p>
     </footer>
-    <script src="index.js"></script>
+    <script src="index.js">
+      
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevents the default form submission
+    
+    // Redirects to your Google Form
+    window.location.href ="https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/viewform?usp=header"
+    </script>
   </body>
 </html>
