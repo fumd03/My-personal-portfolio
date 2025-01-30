@@ -28,45 +28,44 @@ menuIcon.onclick = () => {
 document.getElementById("contactForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent default form submission
 
-    // Replace these with the actual entry IDs from Google Forms
-    var entryFullName = "entry.hj99tb2";  // Replace with correct Google Form entry ID
-    var entryEmail = "entry.hj99tb4";     // Replace with correct Google Form entry ID
-    var entryPhone = "entry.hj99tb6";     // Replace with correct Google Form entry ID
-    var entrySubject = "entry.hj99tb8";   // Replace with correct Google Form entry ID
-    var entryMessage = "entry.hj99tb10";  // Replace with correct Google Form entry ID
-
-    // Google Form Submission URL (Keep `/formResponse` at the end)
+    // Google Form Submission URL (use `/formResponse`)
     var googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/formResponse";
 
-    // Create a hidden form and append it to the page
-    var form = document.createElement("form");
-    form.action = googleFormURL;
-    form.method = "POST";
-    form.target = "hiddenFrame"; // Prevents page redirection
+    // Replace with your Google Form entry IDs (Check via Inspect > Network > formResponse)
+    var entryFullName = "entry.hj99tb2";  // Replace with actual ID
+    var entryEmail = "entry.hj99tb4";     // Replace with actual ID
+    var entryPhone = "entry.hj99tb6";     // Replace with actual ID
+    var entrySubject = "entry.hj99tb8";   // Replace with actual ID
+    var entryMessage = "entry.hj99tb10";   // Replace with actual ID
 
-    // Function to create hidden input fields
-    function addHiddenInput(name, value) {
-        var input = document.createElement("input");
-        input.type = "hidden";
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
-    }
+    // Collect form data
+    var formData = new FormData();
+    formData.append(entryFullName, document.getElementById("fullName").value);
+    formData.append(entryEmail, document.getElementById("email").value);
+    formData.append(entryPhone, document.getElementById("phoneNumber").value);
+    formData.append(entrySubject, document.getElementById("subject").value);
+    formData.append(entryMessage, document.getElementById("message").value);
 
-    // Add form data
-    addHiddenInput(entryFullName, document.getElementById("fullName").value);
-    addHiddenInput(entryEmail, document.getElementById("email").value);
-    addHiddenInput(entryPhone, document.getElementById("phoneNumber").value);
-    addHiddenInput(entrySubject, document.getElementById("subject").value);
-    addHiddenInput(entryMessage, document.getElementById("message").value);
-
-    // Create a hidden iframe for submission
+    // Submit data using an invisible iframe (avoids 405 error)
     var iframe = document.createElement("iframe");
     iframe.name = "hiddenFrame";
     iframe.style.display = "none";
     document.body.appendChild(iframe);
 
-    // Append form to the body and submit it
+    var form = document.createElement("form");
+    form.action = googleFormURL;
+    form.method = "POST";
+    form.target = "hiddenFrame";
+
+    // Append hidden inputs
+    formData.forEach((value, key) => {
+        var input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+    });
+
     document.body.appendChild(form);
     form.submit();
 
@@ -78,4 +77,3 @@ document.getElementById("contactForm").addEventListener("submit", function(event
         document.body.removeChild(iframe);
     }, 1000);
 });
-
