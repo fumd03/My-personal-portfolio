@@ -30,7 +30,7 @@ document.getElementById("contactForm").addEventListener("submit", function(event
     event.preventDefault(); // Prevent default form submission
 
     // Google Form Submission URL (Must end with `/formResponse`)
-    var googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/formResponse";
+    var googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/viewform?usp=header";
 
     // Replace these entry values with your actual Google Form field IDs
     var formData = new URLSearchParams();
