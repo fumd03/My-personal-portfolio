@@ -19,10 +19,9 @@ window.onscroll = () => {
     }
   });
 };
+const scriptURL = "https://script.google.com/macros/s/AKfycbyBPzKvfGF4Bq9WSxz-f0kXrysCdelKvx7QkVeRPNpx0i66vh3W-WQaISeQCtOKVVIVNw/exec";
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbyBPzKvfGF4Bq9WSxz-f0kXrysCdelKvx7QkVeRPNpx0i66vh3W-WQaISeQCtOKVVIVNw/exec"; // Add your actual script URL
-
-const form = document.forms["contact-form"]; // Corrected form selection
+const form = document.getElementById("contactForm"); // Use ID to select form
 
 form.addEventListener("submit", (e) => {
   e.preventDefault(); // Prevent default form submission
@@ -33,11 +32,7 @@ form.addEventListener("submit", (e) => {
   })
     .then((response) => {
       alert("Thank you! Your form is submitted successfully.");
+      form.reset(); // Clear form fields after submission
     })
-    .then(() => {
-      window.location.reload(); // Reload after form submission
-    })
-    .catch((error) => console.error("Error!", error.message)); // Fixed syntax error
+    .catch((error) => console.error("Error!", error.message));
 });
-
-
