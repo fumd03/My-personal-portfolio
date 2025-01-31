@@ -19,7 +19,7 @@ window.onscroll = () => {
     }
   });
 };
-const scriptURL = "https://script.google.com/macros/s/AKfycbyBPzKvfGF4Bq9WSxz-f0kXrysCdelKvx7QkVeRPNpx0i66vh3W-WQaISeQCtOKVVIVNw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbw9Ixovlx_AiMhqz3wgn47lxOf3F5aD-voQ1xiFlZOb8MkB4a18kJPnpEt13h9vcJEq/exec";
 
 const form = document.getElementById("contactForm"); // Use ID to select form
 
