@@ -31,8 +31,14 @@ form.addEventListener("submit", (e) => {
     body: new FormData(form),
   })
     .then((response) => {
+      if (!response.ok) {
+        throw new Error("Form submission failed! Please try again.");
+      }
       alert("Thank you! Your form is submitted successfully.");
       form.reset(); // Clear form fields after submission
     })
-    .catch((error) => console.error("Error!", error.message));
+    .catch((error) => {
+      console.error("Error!", error.message);
+      alert("Oops! Something went wrong. Please try again later.");
+    });
 });
