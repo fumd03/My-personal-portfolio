@@ -20,42 +20,24 @@ window.onscroll = () => {
   });
 };
 
-menuIcon.onclick = () => {
-  menuIcon.classList.toggle("bx-x");
-  navBar.classList.toggle("active");
-};
+const scriptURL = "https://script.google.com/macros/s/AKfycbyBPzKvfGF4Bq9WSxz-f0kXrysCdelKvx7QkVeRPNpx0i66vh3W-WQaISeQCtOKVVIVNw/exec"; // Add your actual script URL
 
+const form = document.forms["contact-form"]; // Corrected form selection
 
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submission
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // Prevent default form submission
 
-    // Google Form Submission URL (Must end with `/formResponse`)
-    var googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeOa2eyU0Na0xhPE67A7v9OSpZDY77tJPEogCS_nvosSyNg9A/viewform?usp=header";
-
-    // Replace these entry values with your actual Google Form field IDs
-    var formData = new URLSearchParams();
-    formData.append("entry.hj99tb2", document.getElementById("fullName").value); // Full Name
-    formData.append("entry.hj99tb4", document.getElementById("email").value); // Email
-    formData.append("entry.hj99tb6", document.getElementById("phoneNumber").value); // Phone Number
-    formData.append("entry.hj99tb8", document.getElementById("subject").value); // Subject
-    formData.append("entry.hj99tb10", document.getElementById("message").value); // Message
-
-    // Debugging: Log data before sending
-    console.log("Sending Data:", formData.toString());
-
-    // Send form data using fetch()
-    fetch(googleFormURL, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors" // Google doesn't send a response, but it will submit data
-    }).then(() => {
-        alert("Message sent successfully!");
-        document.getElementById("contactForm").reset(); // Reset form
-    }).catch(error => {
-        console.error("Error:", error);
-        alert("Failed to send the message. Check the console.");
-    });
+  fetch(scriptURL, {
+    method: "POST",
+    body: new FormData(form),
+  })
+    .then((response) => {
+      alert("Thank you! Your form is submitted successfully.");
+    })
+    .then(() => {
+      window.location.reload(); // Reload after form submission
+    })
+    .catch((error) => console.error("Error!", error.message)); // Fixed syntax error
 });
-
 
 
